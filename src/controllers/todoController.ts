@@ -66,4 +66,11 @@ export const getTodoById=async (req:Request,res:Response):Promise<void>=>{
     }
 };
 
-export const updateTodo=async()
+export const updateTodo=async(req:Request,res:Response):Promise<void>=>{
+    try{
+
+    }
+    catch(error){
+        
+    }
+}
