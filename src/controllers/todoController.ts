@@ -1,1 +1,1 @@
-import todoSchema from '../models/todoModel';
+import Todo, { PriorityLevel } from '../models/todoModel.js';
