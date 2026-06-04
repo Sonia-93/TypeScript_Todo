@@ -4,3 +4,7 @@ import todoRoutes from './routes/todoRoutes';
 
 const app=express();
 app.use(json);
+
+app.use('/api', todoRoutes);
+
+const port =process.env.PORT || 3000;
