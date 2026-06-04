@@ -1,3 +1,4 @@
+import { truncate } from "fs";
 import Todo, { PriorityLevel } from "../models/todoModel";
 import { Request, Response, NextFunction } from "express";
 
@@ -68,9 +69,32 @@ export const getTodoById=async (req:Request,res:Response):Promise<void>=>{
 
 export const updateTodo=async(req:Request,res:Response):Promise<void>=>{
     try{
-
+const {id}=req.params;
+const updateData:updateTodo=req.body;
+const updatedTodo=await Todo.findByIdAndUpdate(id,updateData,{new:true});
+if(!updatedTodo){
+    res.status(404).json({message:'Todo not found'});
+    return;
+}
+res.status(200).json(updatedTodo);
     }
     catch(error){
-        
+res.status(500).json({message:'Server error',error});
     }
+}
+
+export const deleteTodo= async(req:Request,res:Response):Promise<void>=>{
+try{
+const {id}=req.params;
+const deletedTodo=await Todo.findByIdAndDelete(id);
+if(!deletedTodo){
+    res.status(404).json({message:'Todo not found'});
+    return;
+}
+res.status(200).json({message:'Todo deleted successfully'});
+}
+catch(error){
+    res.status(500).json({message:'Server error',error});
+}
+
 }
