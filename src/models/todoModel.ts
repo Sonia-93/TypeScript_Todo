@@ -30,4 +30,4 @@ const todoSchema= new Schema <ITodo>({
     }
    
 })
-const Todo=model<ITodo>('Todo',todoSchema);
+export default model<ITodo>('Todo', todoSchema);
